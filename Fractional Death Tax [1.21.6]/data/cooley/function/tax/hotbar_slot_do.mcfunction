@@ -1,9 +1,4 @@
-function cooley:tax/slot/init
-
-# get exact item amt
-$execute store result score #item_amt co_math run data get entity @s Inventory[{Slot:$(shift_slot)b}].count
-
-function cooley:tax/slot/amt
+$function cooley:tax/slot/amt {location:"Inventory[{Slot:$(shift_slot)b}]"}
 
 # get item amt and slot for the set macro
 execute store result storage cooley:storage root.temp.count int 1 run scoreboard players get #item_amt co_math

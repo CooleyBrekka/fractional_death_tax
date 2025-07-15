@@ -1,3 +1,11 @@
+scoreboard players set #item_amt co_math 3
+
+# get exact item amt
+$execute store result score #item_amt co_math run data get entity @s $(location).count
+
+# remove vanishing items
+$execute if data entity @s $(location).components."minecraft:enchantments"."minecraft:vanishing_curse" if score #tax_vanishing co_math matches 1 run scoreboard players set #item_amt co_math 0
+
 # subtract the taxed fraction of item (rounds down by default)
 scoreboard players operation #tax_penalty co_math = #item_amt co_math
 scoreboard players operation #tax_penalty co_math *= #tax_numerator co_math

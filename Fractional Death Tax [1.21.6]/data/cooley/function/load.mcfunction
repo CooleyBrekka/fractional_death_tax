@@ -4,6 +4,7 @@ scoreboard objectives add co_math dummy
 scoreboard objectives add tax_death deathCount
 gamerule keepInventory true
 
-scoreboard players set #tax_numerator co_math 1
-scoreboard players set #tax_denominator co_math 3
+execute unless score #first_load co_math matches 1 run function cooley:first_load
+
+
 
