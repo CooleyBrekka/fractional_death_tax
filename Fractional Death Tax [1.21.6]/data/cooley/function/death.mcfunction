@@ -1,6 +1,6 @@
 scoreboard players set @s tax_death 0
 
-function cooley:tax/do
+function cooley:tax/all
 
-tellraw @s "this is the default death message. cooley/function/death.mcfunction to customize this text."
+#tellraw @s "this is the default death message. cooley/function/death.mcfunction to customize this text."
 
