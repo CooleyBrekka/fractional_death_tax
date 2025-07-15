@@ -5,4 +5,5 @@ function cooley:storage/forloop {iter:0,max_iter:9,current:"#hotbar_slot co_math
 
 function cooley:tax/offhand_slot_setup
 
+function cooley:tax/armor
 
