@@ -5,3 +5,5 @@ scoreboard players set #tax_denominator co_math 3
 
 scoreboard players set #tax_disabled co_math 0
 scoreboard players set #tax_vanishing co_math 1
+
+gamerule keepInventory true
