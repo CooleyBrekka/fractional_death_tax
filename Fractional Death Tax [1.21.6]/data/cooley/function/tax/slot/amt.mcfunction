@@ -3,8 +3,8 @@ scoreboard players set #item_amt co_math 3
 # get exact item amt
 $execute store result score #item_amt co_math run data get entity @s $(location).count
 
-$execute if score #tax_safe co_math matches 1 if items entity @s $(check) #cooley:whitelist run return 0
-$execute if score #tax_safe co_math matches 0 unless items entity @s $(check) #cooley:blacklist run return 0
+$execute if score #tax_safe co_math matches 1 if items $(phys) $(check) #cooley:whitelist run return 0
+$execute if score #tax_safe co_math matches 0 unless items $(phys) $(check) #cooley:blacklist run return 0
 
 # remove vanishing items
 $execute if data entity @s $(location).components."minecraft:enchantments"."minecraft:vanishing_curse" if score #tax_vanishing co_math matches 1 run scoreboard players set #item_amt co_math 0
@@ -15,4 +15,6 @@ scoreboard players operation #tax_penalty co_math *= #tax_numerator co_math
 scoreboard players operation #tax_penalty co_math /= #tax_denominator co_math
 
 scoreboard players operation #item_amt co_math -= #tax_penalty co_math
+
+
 

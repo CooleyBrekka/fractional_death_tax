@@ -1,17 +1,10 @@
-scoreboard players set #item_amt co_math 3
+# store the item physically for whitelist and blacklist check
+setblock 1000002 71 1000000 chest
+data modify block 1000002 71 1000000 Items set value []
+$data modify block 1000002 71 1000000 Items append from entity @s $(component).components.minecraft:container[{slot:$(shulker_slot)}].item
 
-# get exact item amt
-$execute store result score #item_amt co_math run data get entity @s $(component).components.minecraft:container[{slot:$(shulker_slot)}].item.count
-
-# remove vanishing items
-$execute if data entity @s $(component).components.minecraft:container[{slot:$(shulker_slot)}].item.components."minecraft:enchantments"."minecraft:vanishing_curse" if score #tax_vanishing co_math matches 1 run scoreboard players set #item_amt co_math 0
-
-
-scoreboard players operation #tax_penalty co_math = #item_amt co_math
-scoreboard players operation #tax_penalty co_math *= #tax_numerator co_math
-scoreboard players operation #tax_penalty co_math /= #tax_denominator co_math
-
-scoreboard players operation #item_amt co_math -= #tax_penalty co_math
+# calculate amount
+$function cooley:tax/slot/amt {location:"$(component).components.minecraft:container[{slot:$(shulker_slot)}].item",check:"container.0",phys:"block 1000002 71 1000000"}
 
 # get the item from the player
 $data modify storage cooley:storage root.temp.item set from entity @s $(component).components.minecraft:container[{slot:$(shulker_slot)}]
