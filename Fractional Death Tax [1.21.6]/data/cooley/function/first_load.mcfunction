@@ -7,5 +7,6 @@ scoreboard players set #tax_disabled co_math 0
 scoreboard players set #tax_vanishing co_math 1
 scoreboard players set #tax_safe co_math 1
 scoreboard players set #tax_type co_math 0
+scoreboard players set #tax_shulker co_math 1
 
 gamerule keepInventory true
