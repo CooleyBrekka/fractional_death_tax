@@ -1,4 +1,4 @@
-$function cooley:tax/slot/amt {location:"equipment.$(armor)"}
+$function cooley:tax/slot/amt {location:"equipment.$(armor)",check:"armor.$(armor)",phys:"entity @s"}
 
 # get item amt and slot for the set macro
 execute store result storage cooley:storage root.temp.count int 1 run scoreboard players get #item_amt co_math
