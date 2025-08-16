@@ -9,16 +9,21 @@ function death_tax:tool/max_durability
 execute if score #durability co_math matches 1.. run scoreboard players operation #item_amt co_math = #durability co_math
 execute if score #durability co_math matches 1.. run scoreboard players operation #item_amt co_math -= #damage co_math
 
-# remove vanishing items
+# remove vanishing items if flag is set
 $execute if data entity @s $(location).components."minecraft:enchantments"."minecraft:vanishing_curse" if score #tax_vanishing co_math matches 1 run scoreboard players set #item_amt co_math 0
 $execute if data entity @s $(location).components."minecraft:enchantments"."minecraft:vanishing_curse" if score #tax_vanishing co_math matches 1 run scoreboard players set #durability co_math 0
 
-# if item shouldn't be modified, leave unless it's manually blacklisted (vanishing items still vanish)
+# if we're using the whitelist and the item is on the whitelist, ignore it
 $execute if score #tax_safe co_math matches 1 if items $(phys) $(check) #death_tax:whitelist unless data entity @s $(location).components."minecraft:custom_data".tax_blacklist run return 0
+
+# if we're using the blacklist, ignore the item unless it's on the blacklist
 $execute if score #tax_safe co_math matches 0 unless items $(phys) $(check) #death_tax:blacklist unless data entity @s $(location).components."minecraft:custom_data".tax_blacklist run return 0
 
 # item is manually whitelisted, definitely don't modify
 $execute if data entity @s $(location).components."minecraft:custom_data".tax_whitelist run return 0
+
+# item has tax evasion don't modify
+$execute if data entity @s $(location).components."minecraft:enchantments"."death_tax:tax_evasion" run return 0
 
 # subtract the taxed fraction of item (rounds down by default)
 scoreboard players operation #tax_penalty co_math = #item_amt co_math
