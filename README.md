@@ -1,6 +1,5 @@
-A datapack to enable fractional losses on death.
+THIS REPO IS DEPRECATED
+GO HERE FOR THE UPDATED VERSION
+https://github.com/CooleyBrekka/cooley_archive
 
-Implemented by CooleyBrekka\
-Concept by KVT\
-Additional code by PearUhDox (Cartographer 2.0)
 
